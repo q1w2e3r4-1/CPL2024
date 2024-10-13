@@ -137,3 +137,43 @@ Perfect
 8. 第八个音符 “Miss”：得分为0分，Miss，不得分，Combo清零。
 9. 第九个音符 “Perfect”：得分为100分，加成为1.0倍，实际得分100分，Combo增加至1。
 10. 第十个音符 “Perfect”：得分为110分，加成为1.1倍，实际得分110分，Combo增加至2。
+
+### input2
+
+```
+24
+Perfect
+Perfect
+Perfect
+Perfect
+Perfect
+Perfect
+Perfect
+Perfect
+Perfect
+Perfect
+Perfect
+Perfect
+Perfect
+Perfect
+Perfect
+Perfect
+Perfect
+Perfect
+Perfect
+Perfect
+Perfect
+Perfect
+Perfect
+Perfect
+```
+
+
+
+### output2
+
+```output2
+5100 24
+```
+### 样例2解释：
+你可以自行计算下，以确定你对分数计算规则没有误解

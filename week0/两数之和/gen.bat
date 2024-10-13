@@ -2,7 +2,19 @@
 setlocal enabledelayedexpansion
 
 :: check
-:: 检查std.cpp是否存在
+:: 检查gen.cpp是否存在
+if not exist gen.cpp (
+    echo Error: gen.cpp does not exist.
+    exit /b
+)
+
+g++ gen.cpp -o gen.exe
+if errorlevel 1 (
+    echo Error: Compilation failed.
+    exit /b
+)
+
+:: 检查std.c是否存在
 if not exist std.c (
     echo Error: std.c does not exist.
     exit /b
