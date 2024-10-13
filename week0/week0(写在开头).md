@@ -52,9 +52,9 @@ q1w2e3r4, 作于2024/10/5
 
 对于NJU校内学生，我们争取保三争四，实在不行骗点部分分也可以(1:签到，2:课内, 3:应用题，4:提高)
 
-如果你是校外学生，那我会推荐您两位本校的老师：[ant-hengxin的个人空间-ant-hengxin个人主页-哔哩哔哩视频 (bilibili.com)](https://space.bilibili.com/479141149)
+如果你是校外学生，那我会推荐您两位本校的老师：魏恒峰老师[ant-hengxin的个人空间-ant-hengxin个人主页-哔哩哔哩视频 (bilibili.com)](https://space.bilibili.com/479141149)
 
-[why_hy_y的个人空间-why_hy_y个人主页-哔哩哔哩视频 (bilibili.com)](https://space.bilibili.com/49964811)
+和王慧妍老师[why_hy_y的个人空间-why_hy_y个人主页-哔哩哔哩视频 (bilibili.com)](https://space.bilibili.com/49964811)
 
 
 
@@ -84,25 +84,25 @@ q1w2e3r4, 作于2024/10/5
 | 12     | 链表                |
 | Extra5 | ???                 |
 
+目前暂定是这样，后面可能会作微调。
+
+在每节课的结束时，你可以思考如下问题：**为什么要引入今天讲的东西？他能解决什么问题？能否继续改进？**
 
 
-## 3.格式规范
 
-### example 1
+### 我可以做什么
 
-不同功能之间隔一行(输入，输出，处理)
+首先，你可以点击这个链接来加入我的OJ: https://hydro.ac/d/CPL_NJU/domain/join这里面的题目是我自己出的，用于辅助练习。
 
-大括号尽量不要省
+然后是校内的OJ，如果你是外校学生应该注册不了（所以才要往我的OJ里加点题）
 
-每行只写一条语句，到时候debug也好de
-![1.png](C:/Users/a1592/Desktop/CPL-2024/week1/images/1.png)
+对于每道题目，我建议你至少先思考5分钟，实在没思路或者直到做出来然后再去看看题解。
 
-### example 2
 
-缩进一定要明确！否则逻辑会很混乱
 
-![2.png](C:/Users/a1592/Desktop/CPL-2024/week1/images/2.png)
-![3.png](C:/Users/a1592/Desktop/CPL-2024/week1/images/3.png)
+然后是课程讲解部分，在B站账号上。
 
-ctrl+a , ctrl+x, ctrl+v, 让IDE帮你整理格式
+带有**[Extra]**或者**[Lect.x]**的内容主要是讲课，包含了我出的题目，以及OJ上的不计分练习。
+
+带有**[hw1]**之类标签的视频则是讲解计分作业。（但请注意，2024秋学期结束之后可能就要删掉了）
 
