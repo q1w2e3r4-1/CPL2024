@@ -1,62 +1,30 @@
 #include<stdio.h>
-#include<string.h>
+#include<stdlib.h>
+#include<math.h>
 
-int n;
-char s[20];
+int a,b;
 
+double F(double x){
+    double ans = exp(x) - a * x * x * x - b * x - 20;
+    return ans;
+}
+
+double eps = 1e-4;
 int main(){
-    int score = 0;
-    int max_combo = 0;
-    int combo = 0;
+    scanf("%d %d", &a, &b);
+    double l = 0, r = 100;
+    while(r - l >= eps){
+        // printf("%.10lf %.10lf\n",l,r);
+        double mid = (l+r) / 2;
+        double tmp = F(mid);
 
-    scanf("%d",&n);
-    for(int i=1;i<=n;i++){
-        scanf("%s", s);
-        if(strcmp(s, "Perfect") == 0){
-            int base = 10;
-            int bonus = 10 + combo;
-            if(bonus > 30){
-                bonus = 30;
-            }
-
-            score += base * bonus;
-            combo ++;
-            if(combo > max_combo){
-                max_combo = combo;
-            }
-        }
-        else if(strcmp(s, "Great") == 0){
-            int base = 5;
-            int bonus = 10 + combo;
-            if(bonus > 30){
-                bonus = 30;
-            }
-
-            score += base * bonus;
-            combo ++;
-            if(combo > max_combo){
-                max_combo = combo;
-            }
-        }
-        else if(strcmp(s, "Good") == 0){
-            int base = 2;
-            int bonus = 10 + combo;
-            if(bonus > 30){
-                bonus = 30;
-            }
-
-            score += base * bonus;
-            combo ++;
-            if(combo > max_combo){
-                max_combo = combo;
-            }
+        if(tmp < 0){
+            l = mid;
         }
         else{
-            // Miss
-            combo = 0;
+            r = mid;
         }
-        // printf("%d %d\n",score, max_combo);
     }
 
-    printf("%d %d",score, max_combo);
+    printf("%.10f", l);
 }
