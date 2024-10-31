@@ -1,30 +1,29 @@
 #include<stdio.h>
 #include<stdlib.h>
-#include<math.h>
 
-int a,b;
+int a[10][15];
+int n,m;
 
-double F(double x){
-    double ans = exp(x) - a * x * x * x - b * x - 20;
-    return ans;
-}
-
-double eps = 1e-4;
 int main(){
-    scanf("%d %d", &a, &b);
-    double l = 0, r = 100;
-    while(r - l >= eps){
-        // printf("%.10lf %.10lf\n",l,r);
-        double mid = (l+r) / 2;
-        double tmp = F(mid);
-
-        if(tmp < 0){
-            l = mid;
+    scanf("%d %d",&n,&m);
+    for(int i=1;i<=n;i++){
+        for(int j=1;j<=m;j++){
+            scanf("%d", &a[i][j]);
         }
-        else{
-            r = mid;
-        }
-    }
+    }    
 
-    printf("%.10f", l);
+    for(int i=1;i<=m;i++){
+        for(int j=1;j<=n;j++){
+            printf("%d ", a[j][i]);
+        }
+        printf("\n");
+    }  
 }
+
+/*
+3 2
+
+1 2
+3 4
+5 6
+*/

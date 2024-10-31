@@ -1,1 +1,0 @@
-python gen.py > input.txt
