@@ -91,6 +91,7 @@
         "xtr1common": "cpp",
         "xutility": "cpp",
         "math.h": "c",
-        "corecrt_math.h": "c"
+        "corecrt_math.h": "c",
+        "d.C": "cpp"
     }
 }
