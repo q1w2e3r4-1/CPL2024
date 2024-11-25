@@ -1,0 +1,1 @@
+{"name":"Local: C","url":"c:\\Users\\a1592\\Desktop\\CPL-2024\\week6\\unrated\\C.c","tests":[{"id":1731661509811,"input":"1 2 3\nWD","output":"-3 0 2 3"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\a1592\\Desktop\\CPL-2024\\week6\\unrated\\C.c","group":"local","local":true}

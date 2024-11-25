@@ -1,92 +1,162 @@
 #include <stdio.h>
 #include <string.h>
 
-#define CARDS_IN_HAND 5
+int T;
+char tmp[5];
+int card[10];
 
-// 定义牌面点数映射到整数的数组
-int rank_to_int(char rank) {
-    switch (rank) {
-        case '2': return 2;
-        case '3': return 3;
-        case '4': return 4;
-        case '5': return 5;
-        case '6': return 6;
-        case '7': return 7;
-        case '8': return 8;
-        case '9': return 9;
-        case 'T': return 10;
-        case 'J': return 11;
-        case 'Q': return 12;
-        case 'K': return 13;
-        case 'A': return 14;
-        default: return 0;
+int input(){
+    scanf("%s", tmp);
+    char c = tmp[0];
+
+    if(c >= '2' && c <= '9'){
+        return c - '0';
+    }
+    else if(c == 'T'){
+        return 10;
+    }
+    else if(c == 'J'){
+        return 11;
+    }
+    else if(c == 'Q'){
+        return 12;
+    }
+    else if(c == 'K'){
+        return 13;
+    }
+    else if(c == 'A'){
+        return 14;
+    }
+    else{
+        printf("xxxxxxx\n");
+    }
+    return 0;
+}
+int is_four();
+int is_full_house();
+int is_flush();
+int is_three();
+int is_two_pair();
+int is_one_pair();
+
+int cnt[20];
+void cal(){
+    // cal cnt of every point
+    for(int i=0;i<20;i++){
+        cnt[i] = 0;
+    }
+
+    for(int i=1;i<=5;i++){
+        int x = card[i];
+        cnt[x] ++;
     }
 }
 
-// 判断牌型并输出结果
-void evaluate_hand(int hand[CARDS_IN_HAND]) {
-    int rank_counts[15] = {0}; // 从2到A的计数数组
-    int i, rank, is_straight = 0, pairs = 0, three_of_a_kind = 0, four_of_a_kind = 0;
-
-    // 计算每个点数的牌的数量
-    for (i = 0; i < CARDS_IN_HAND; i++) {
-        rank_counts[hand[i]]++;
+void solve(){
+    for(int i=1;i<=5;i++){
+        card[i] = input();
     }
+    cal();
 
-    // 检查顺子
-    rank_counts[1] = rank_counts[14];
-    for(int i=14;i>=5;i--){
-        int ok = 1;
-        for(int j=0;j<=4;j++){
-            if(rank_counts[i-j] == 0) ok = 0;
-        }
-        is_straight |= ok;
-    }
-    if (is_straight) {
-        printf("Flush\n");
-        return;
-    }
-
-    // 检查四条、葫芦、三条、两对、一对
-    for (i = 2; i <= 14; i++) {
-        if (rank_counts[i] == 4) {
-            four_of_a_kind = 1;
-        } else if (rank_counts[i] == 3) {
-            three_of_a_kind++;
-        } else if (rank_counts[i] == 2) {
-            pairs++;
-        }
-    }
-
-    if (four_of_a_kind) {
+    if(is_four()){
         printf("Four of a Kind\n");
-    } else if (three_of_a_kind == 1 && pairs == 1) {
+    }
+    else if(is_full_house()){
         printf("Full House\n");
-    } else if (three_of_a_kind == 1) {
+    }
+    else if(is_flush()){
+        printf("Flush\n");
+    }
+    else if(is_three()){
         printf("Three of a Kind\n");
-    } else if (pairs == 2) {
+    }
+    else if(is_two_pair()){
         printf("Two Pairs\n");
-    } else if (pairs == 1) {
+    }
+    else if(is_one_pair()){
         printf("One Pair\n");
-    } else {
+    }
+    else{
         printf("High Card\n");
     }
 }
 
 int main() {
-    int t, i;
-    char rank;
-    int hand[CARDS_IN_HAND];
+    scanf("%d", &T);
+    while(T--){
+        solve();
+    }
+}
 
-    scanf("%d", &t); // 读取测试用例的数量
-
-    while (t--) {
-        for (i = 0; i < CARDS_IN_HAND; i++) {
-            scanf(" %c", &rank); // 读取牌面点数
-            hand[i] = rank_to_int(rank); // 转换为整数
+int is_four(){
+    for(int i=2;i<=14;i++){
+        if(cnt[i] == 4){
+            return 1;
         }
-        evaluate_hand(hand); // 判断牌型并输出结果
+    }
+    return 0;
+}
+
+int is_full_house(){
+    int c2 = 0, c3 = 0;
+    for(int i=2;i<=14;i++){
+        if(cnt[i] == 3){
+            c3 ++;
+        }
+        if(cnt[i] == 2){
+            c2 ++;
+        }
     }
 
+    if(c2 && c3) return 1;
+    return 0;
+}
+
+int is_flush(){
+    // 12345,23456,34567,45678,56789,6789T
+    cnt[1] = cnt[14];
+    for(int i=14;i>=5;i--){
+        int flag = 1;
+        for(int j=1;j<=5;j++){
+            if(cnt[i-j+1] != 1){
+                flag = 0;
+            }
+        }
+
+        if(flag){
+            return 1;
+        }
+    }
+
+    return 0;
+}
+
+int is_three(){
+    for(int i=2;i<=14;i++){
+        if(cnt[i] == 3){
+            return 1;
+        }
+    }
+    return 0;
+}
+
+int is_two_pair(){
+    int c = 0;
+    for(int i=2;i<=14;i++){
+        if(cnt[i] == 2){
+            c++;
+        }
+    }
+
+    if(c == 2) return 1;
+    return 0;
+}
+
+int is_one_pair(){
+    for(int i=2;i<=14;i++){
+        if(cnt[i] == 2){
+            return 1;
+        }
+    }
     return 0;
 }
