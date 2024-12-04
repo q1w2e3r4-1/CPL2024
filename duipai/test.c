@@ -1,131 +1,73 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 
-int main(void) {
-    int n=0,min=0,t=0,max=0;
-    char a[20000],b[20000],f[4];
-    int an[20000],bn[20000],tn[20005];
+
+void interleaveString(char* Str1, char* Str2, int a, int b, int c);
+
+
+int main() {
+    int n;
     scanf("%d",&n);
-    for(int i=0;i<n;i++) {
-        scanf("%s%s%s",a,f,b);
-
-        for(int j=0;j<strlen(a);j++) {
-            an[j]=a[j]-'0';
-        }
-
-        for(int j=0;j<strlen(b);j++) {
-            bn[j]=b[j]-'0';
-        }
-
-        for (int w = 0; w < strlen(a)/ 2; w++) {
-            int temp=an[w];
-            an[w]=an[strlen(a)-w-1];
-            an[strlen(a)-w-1]=temp;
-        }
-        for (int w = 0; w < strlen(b)/ 2; w++) {
-            int temp=bn[w];
-            bn[w]=bn[strlen(b)-w-1];
-            bn[strlen(b)-w-1]=temp;
-        }
-
-        if(f[0]=='+') {
-            memset(tn,0,20005);
-            max=strlen(a)>strlen(b)?strlen(a):strlen(b);
-
-            for(int j=strlen(b);j<20005;j++){ tn[j]=0;}
-            for(int j=strlen(a);j<20005;j++){ tn[j]=0;}
-
-            for(int j=0;j<max;j++) {
-                tn[j]+=an[j]+bn[j];
-            }
-
-            for(int j=0;j<strlen(b)+strlen(a)+1&&j<20005;j++) {
-                if(tn[j]>=10) {
-                    tn[j]=tn[j]-10;
-                    tn[j+1]+=1;
-                }
-            }
-
-            for(int j=20004;j>=0;j--) {
-                if(tn[j]!=0) {
-                    t=j;
-                    break;
-                }
-            }
-             
-            for(int j=t;j>=0;j--) {
-                printf("%d",tn[j]);
-            }
-            if(i!=n-1) {
-                printf("\n");
-            }
+    while(n--) {
+        char s[2050];
+        scanf("%s",s);
+        char *str1 = strtok(s,";");
+        char *str2 = strtok(NULL,";");
+        char *str3 = strtok(NULL,";");
+        char *str4 = strtok(NULL,";");
+        char *str5 = strtok(NULL,";");
+        int a = atoi(str3), b = atoi(str4), c = atoi(str5);
+        interleaveString(str1,str2,a,b,c);
     }
-
-       if(f[0]=='-') {
-           memset(tn,0,20005);
-           max=strlen(a)>strlen(b)?strlen(a):strlen(b);
-
-           for(int j=strlen(b);j<20005;j++){ tn[j]=0;}
-           for(int j=strlen(a);j<20005;j++){ tn[j]=0;}
-
-
-        for(int j=0;j<max;j++) {
-            tn[j]+=an[j]-bn[j];
-        }
-           for(int j=0;j<max;j++) {
-              if(tn[j]<0) {
-                  tn[j]=tn[j]+10;
-                  tn[j+1]-=1;
-              }
-           }
-
-           for(int j=20004;j>=0;j--) {
-               if(tn[j]!=0) {
-                   t=j;
-                   break;
-               }
-           }
-           for(int j=t;j>=0;j--) {
-               printf("%d",tn[j]);
-           }
-           if(i!=n-1) {
-               printf("\n");
-           }
-       }
-        if(f[0]=='*') {
-
-            memset(tn,0,20005);
-
-            for(int j=0;j<strlen(a);j++) {
-                for(int k=0;k<strlen(b);k++) {
-                    tn[k+j]+=an[j]*bn[k];
-                }
-            }
-
-            for(int j=0;j<strlen(b)+strlen(a)+2&&j<20005;j++) {
-                int up=tn[j]/10;
-                if(up) {
-                    tn[j+1]+=up;
-                    tn[j]=tn[j]%10;
-                }
-            }
-            for(int j=20004;j>=0;j--) {
-                if(tn[j]!=0) {
-                    t=j;
-                    break;
-                }
-            }
-            for(int j=t;j>=0;j--) {
-                printf("%d",tn[j]);
-            }
-            if(i!=n-1) {
-                printf("\n");
-            }
-        }
-        if(f[0]=='/'){
-        printf("1\n");
-        }
-   }
-   
     return 0;
+}
+
+
+void interleaveString(char* Str1, char* Str2, int a, int b, int c) {
+    char Str[2050];
+    int len1 = strlen(Str1), len2 = strlen(Str2);
+    int count = 0, count1 = 0, count2 = 0;
+    _Bool flag = 1, flag1 = 1, flag2 = 1;
+    while(1) {
+        if(flag && flag1) {
+            int k = 0;
+            for(int i = 0; i < a; i++) {
+                Str[count] = Str1[i];
+                count++;
+                count1++;
+                k ++;
+                if(count1 == len1) {
+                    flag1 = 0;
+                }
+                if(count == c - 1) {
+                    flag = 0;
+                }
+                if(flag1 == 0 || flag == 0)break;
+            }
+            Str1 += k;
+        }
+        if(flag && flag2) {
+            int k = 0;
+            for(int i = 0; i < b; i++) {
+                Str[count] = Str2[i];
+                count++;
+                count2++;
+                k++;
+                if(count2 == len2) {
+                    flag2 = 0;
+                }
+                if(count == c - 1) {
+                    flag = 0;
+                }
+                if(flag2 == 0 || flag == 0)break;
+            }
+            Str2 += k;
+        }
+        if(flag == 0 || (flag1 == 0 && flag2 == 0) ){
+            Str[count] = 0;
+            printf("%s\n",Str);
+            return;
+        }
+    }
 }
