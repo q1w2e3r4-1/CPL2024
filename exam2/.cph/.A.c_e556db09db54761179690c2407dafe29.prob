@@ -1,0 +1,1 @@
+{"name":"Local: A","url":"c:\\Users\\a1592\\Desktop\\CPL-2024\\exam2\\A.c","tests":[{"id":1733485246772,"input":"4 3 1\n4 3 1\n1 4 3\n3 2 1","output":"24"},{"id":1733485252728,"input":"4 3 1\n4 3 1\n4 1 3\n2 1 3","output":"23"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\a1592\\Desktop\\CPL-2024\\exam2\\A.c","group":"local","local":true}
